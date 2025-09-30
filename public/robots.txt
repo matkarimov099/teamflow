@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Sitemap location (if applicable)
+# Sitemap: https://yourdomain.com/sitemap.xml
+
+# Block access to admin and API routes for security
+Disallow: /api/
+Disallow: /admin/
+Disallow: /*.json$
+Disallow: /private/
+
+# Allow search engines to crawl public pages
+Allow: /analysis
+Allow: /users
+Allow: /projects
+Allow: /ai-agents

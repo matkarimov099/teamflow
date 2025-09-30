@@ -1,0 +1,17 @@
+services:
+  teamflow-frontend:
+    restart: always
+    build: .
+    hostname: teamflow-frontend
+    container_name: teamflow-frontend
+    ports:
+      - "3000:80"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - external-net
+
+networks:
+  external-net:
+    name: external-net
+    external: true

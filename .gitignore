@@ -1,0 +1,72 @@
+# ============================================
+# TEAM FLOW DASHBOARD (REACT/VITE) - SPECIFIC GITIGNORE
+# ============================================
+
+# Dependencies
+node_modules/
+.pnpm-store/
+.kiro
+# Build Outputs
+dist/
+dist-ssr/
+*.local
+.vscode
+# Environment Variables
+.env.local
+#.env.staging
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Runtime Data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage & Testing
+coverage/
+.nyc_output
+.jest/
+
+# Package Manager Lockfiles
+bun.lockb
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Code Quality Tools
+.biome
+.eslintcache
+.vscode/settings.json
+
+# IDE & Editor Specific
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+
+# OS Specific
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+
+# TypeScript
+*.tsbuildinfo
+
+# Vite Specific
+.vite/
+
+# Build Analysis
+stats.html
+bundle-analyzer-report.html

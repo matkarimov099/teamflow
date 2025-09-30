@@ -1,0 +1,61 @@
+@import "tw-animate-css";
+@import "tailwindcss";
+@import "./theme.css";
+
+/* Configure Tailwind v4 dark mode */
+@variant dark (.dark &);
+
+@theme {
+  /* Essential Tailwind theme extensions */
+  --radius-xl: 18px;
+}
+
+/* Essential component sizing variables */
+:root {
+  --button-height: calc(2.5rem * var(--scale-factor));
+  --input-height: calc(2.5rem * var(--scale-factor));
+  --sidebar-width: calc(17rem * var(--scale-factor));
+}
+
+/* Optimized scrollbar styles */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+/* Sidebar specific scrollbars */
+[data-sidebar],
+[data-slot="sidebar-content"] {
+  scrollbar-width: thin;
+  scrollbar-color: var(--sidebar-border) transparent;
+}
+[data-sidebar]::-webkit-scrollbar,
+[data-slot="sidebar-content"]::-webkit-scrollbar {
+  width: 10px;
+}
+[data-sidebar]::-webkit-scrollbar-thumb,
+[data-slot="sidebar-content"]::-webkit-scrollbar-thumb {
+  background: var(--sidebar-border);
+  border-radius: 8px;
+}
+[data-sidebar]::-webkit-scrollbar-track,
+[data-slot="sidebar-content"]::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@theme inline {
+  --shadow-input: var(--shadow-sm);
+}

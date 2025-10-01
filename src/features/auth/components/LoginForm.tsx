@@ -38,7 +38,7 @@ export const LoginForm = () => {
     login(values, {
       onSuccess: data => {
         setAuthTokens(data.data.accessToken, data.data.refreshToken);
-        navigate(location.state?.from?.pathname || '/home', { replace: true });
+        navigate(location.state?.from?.pathname || '/profile', { replace: true });
       },
       onError: error => {
         if (isAxiosError<ServerError>(error)) {

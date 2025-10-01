@@ -14,12 +14,16 @@ import {
   useQueryClient,
 } from '@tanstack/react-query';
 
+const QUERY_KEYS = {
+  AGENTS: 'agents',
+};
+
 export function useCreateAgent() {
   const queryClient = useQueryClient();
   return useMutation<ApiResponse, ServerError, AgentCreate>({
     mutationFn: createAgent,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['agents'] }).then();
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.AGENTS] }).then();
     },
   });
 }
@@ -29,14 +33,14 @@ export function useUpdateAgent() {
   return useMutation<ApiResponse, ServerError, { id: string; data: AgentUpdate }>({
     mutationFn: ({ id, data }: { id: string; data: AgentUpdate }) => updateAgent(id, data),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['agents'] }).then();
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.AGENTS] }).then();
     },
   });
 }
 
 export function useGetAgents(filter?: AgentFilter) {
   return useQuery({
-    queryKey: ['agents', filter],
+    queryKey: [QUERY_KEYS.AGENTS, filter],
     queryFn: filter ? () => getAgents(filter) : skipToken,
     placeholderData: keepPreviousData,
     select: data => data.data,
@@ -49,7 +53,7 @@ export function useDeleteAgent() {
   return useMutation<ApiResponse, ServerError, string>({
     mutationFn: (id: string) => deleteAgent(id).then(response => response.data),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['agents'] }).then();
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.AGENTS] }).then();
     },
   });
 }

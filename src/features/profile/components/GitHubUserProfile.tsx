@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar.tsx';
 import { Typography } from '@/components/ui/typography';
-import type { GitHubUser } from '@/features/home/types';
+import type { GitHubUser } from '@/features/profile/types';
 import { humanizeDate } from '@/utils/humanize.ts';
 import {
   Award,

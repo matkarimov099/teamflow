@@ -20,19 +20,24 @@ import {
   getAnalysisById,
 } from '../services/analysis.service.ts';
 
+const QUERY_KEYS = {
+  ANALYSIS: 'analysis',
+  ANALYSIS_STATUS: 'analysis-status',
+};
+
 export function useCreateAnalysis() {
   const queryClient = useQueryClient();
   return useMutation<AnalysisResponse, ServerError, AnalysisCreate>({
     mutationFn: createAnalysis,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['analysis'] }).then();
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ANALYSIS] }).then();
     },
   });
 }
 
 export function useGetAnalyses(filter?: AnalysisFilter) {
   return useQuery({
-    queryKey: ['analysis', filter],
+    queryKey: [QUERY_KEYS.ANALYSIS, filter],
     queryFn: filter ? () => getAnalyses(filter) : skipToken,
     placeholderData: keepPreviousData,
   });
@@ -41,7 +46,7 @@ useGetAnalyses.isQueryHook = true;
 
 export function useGetAnalysisById(id: string) {
   return useQuery({
-    queryKey: ['analysis', id],
+    queryKey: [QUERY_KEYS.ANALYSIS, id],
     queryFn: () => getAnalysisById(id),
     enabled: !!id,
   });
@@ -49,7 +54,7 @@ export function useGetAnalysisById(id: string) {
 
 export function useCheckAnalysisStatus(id: string, enabled = true) {
   return useQuery<AnalysisStatus>({
-    queryKey: ['analysis-status', id],
+    queryKey: [QUERY_KEYS.ANALYSIS_STATUS, id],
     queryFn: () => checkAnalysisStatus(id),
     enabled: enabled && !!id,
     refetchInterval: query => {
@@ -69,7 +74,7 @@ export function useDeleteAnalysis() {
   return useMutation({
     mutationFn: (id: string) => deleteAnalysis(id),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['analysis'] }).then();
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.ANALYSIS] }).then();
     },
   });
 }

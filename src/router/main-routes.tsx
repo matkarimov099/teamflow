@@ -8,12 +8,14 @@ import type { RouteObject } from 'react-router';
 
 // Lazy load all main components for better code splitting
 const Home = lazy(() => import('@/pages/home/Home.tsx'));
+const Profile = lazy(() => import('@/pages/profile/Profile.tsx'));
 const Dashboard = lazy(() => import('@/pages/dashboard/index.tsx'));
 const Users = lazy(() => import('@/pages/users/Users.tsx'));
 const Projects = lazy(() => import('@/pages/projects/Projects.tsx'));
 const Analysis = lazy(() => import('@/pages/analysis/Analysis.tsx'));
 const CreateAnalysis = lazy(() => import('@/pages/analysis/CreateAnalysis.tsx'));
 const UserStats = lazy(() => import('@/pages/user-stats/UserStats.tsx'));
+const TimeTracking = lazy(() => import('@/pages/time-tracking/TimeTracking.tsx'));
 
 /**
  * Main application routes with required authentication
@@ -29,6 +31,15 @@ export const mainRoutes: RouteObject[] = [
       <LazyComponent>
         <PageTitle title="Home" />
         <Home />
+      </LazyComponent>
+    ),
+  },
+  {
+    path: 'profile',
+    element: (
+      <LazyComponent>
+        <PageTitle title="Profile" />
+        <Profile />
       </LazyComponent>
     ),
   },
@@ -92,6 +103,15 @@ export const mainRoutes: RouteObject[] = [
       <LazyComponent>
         <PageTitle title="GitHub User Stats" />
         <UserStats />
+      </LazyComponent>
+    ),
+  },
+  {
+    path: 'time-tracking',
+    element: (
+      <LazyComponent>
+        <PageTitle title="Time Tracking" />
+        <TimeTracking />
       </LazyComponent>
     ),
   },

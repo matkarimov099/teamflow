@@ -1,5 +1,6 @@
 import { BadgeCheck, Bell, ChevronsUpDown, CreditCard, LogOut, Sparkles } from 'lucide-react';
 
+import { LocalizedNavLink } from '@/components/common/localized-nav-link';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar.tsx';
 import {
   DropdownMenu,
@@ -108,10 +109,12 @@ export function NavUser({ user, logout }: NavUserProps) {
               </DropdownMenuGroup>
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
-                <DropdownMenuItem>
-                  <BadgeCheck />
-                  Account
-                </DropdownMenuItem>
+                <LocalizedNavLink to="/profile">
+                  <DropdownMenuItem>
+                    <BadgeCheck />
+                    Account
+                  </DropdownMenuItem>
+                </LocalizedNavLink>
                 <DropdownMenuItem>
                   <CreditCard />
                   Billing

@@ -2,6 +2,7 @@ import type { Role } from '@/types/common.ts';
 import {
   BrainIcon,
   ChartNoAxesCombinedIcon,
+  ClockIcon,
   FileTextIcon,
   FolderIcon,
   GitBranchIcon,
@@ -50,6 +51,12 @@ export const mainMenuItems: SidebarMenuItem[] = [
   // 		},
   // 	],
   // },
+  {
+    title: 'Time Tracking',
+    icon: <ClockIcon />,
+    url: '/time-tracking',
+    roles: [],
+  },
   {
     title: 'Home',
     icon: <HomeIcon />,

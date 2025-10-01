@@ -31,7 +31,7 @@ export default function DashboardPage() {
           </Typography>
           <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
             {[1, 2, 3].map(i => (
-              <div key={i} className="rounded-md border bg-card p-4">
+              <div key={`metric-${i}`} className="rounded-md border bg-card p-4">
                 <Typography variant="h3">Metric {i}</Typography>
                 <div className="mt-2 font-bold text-2xl">{Math.floor(Math.random() * 1000)}</div>
                 <Typography variant="small" className="mt-1 text-muted-foreground">

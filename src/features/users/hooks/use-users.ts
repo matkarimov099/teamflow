@@ -15,12 +15,16 @@ import {
   updateUser,
 } from '../services/users.service.ts';
 
+const QUERY_KEYS = {
+  USERS: 'users',
+};
+
 export function useCreateUser() {
   const queryClient = useQueryClient();
   return useMutation<ApiResponse, ServerError, UserCreate>({
     mutationFn: createUser,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['users'] }).then();
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.USERS] }).then();
     },
   });
 }
@@ -36,14 +40,14 @@ export function useUpdateUser() {
   return useMutation<ApiResponse, ServerError, { id: string; data: UserUpdate }>({
     mutationFn: ({ id, data }: { id: string; data: UserUpdate }) => updateUser(id, data),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['users'] }).then();
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.USERS] }).then();
     },
   });
 }
 
 export function useGetUsers(filter?: UserFilter) {
   return useQuery({
-    queryKey: ['users', filter],
+    queryKey: [QUERY_KEYS.USERS, filter],
     queryFn: filter ? () => getUsers(filter) : skipToken,
     placeholderData: keepPreviousData,
   });
@@ -55,7 +59,7 @@ export function useDeleteUser() {
   return useMutation({
     mutationFn: (id: string) => deleteUser(id),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['users'] }).then();
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.USERS] }).then();
     },
   });
 }

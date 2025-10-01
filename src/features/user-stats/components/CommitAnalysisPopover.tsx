@@ -50,7 +50,7 @@ export function CommitAnalysisPopover({
     try {
       await navigator.clipboard.writeText(analysis);
       toast.success('Analysis copied to clipboard');
-    } catch (error) {
+    } catch {
       toast.error('Failed to copy analysis');
     }
   };
@@ -77,7 +77,7 @@ export function CommitAnalysisPopover({
           )}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[700px]" align="end">
+      <PopoverContent className="md:w-[700px] max-w-full" align="end">
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">

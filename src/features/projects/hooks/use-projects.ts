@@ -20,12 +20,16 @@ import {
   useQueryClient,
 } from '@tanstack/react-query';
 
+const QUERY_KEYS = {
+  PROJECTS: 'projects',
+};
+
 export function useCreateProject() {
   const queryClient = useQueryClient();
   return useMutation<ApiResponse, ServerError, ProjectCreate>({
     mutationFn: createProject,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['projects'] }).then();
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.PROJECTS] }).then();
     },
   });
 }
@@ -41,14 +45,14 @@ export function useUpdateProject() {
   return useMutation<ApiResponse, ServerError, { id: string; data: ProjectUpdate }>({
     mutationFn: ({ id, data }: { id: string; data: ProjectUpdate }) => updateProject(id, data),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['projects'] }).then();
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.PROJECTS] }).then();
     },
   });
 }
 
 export function useGetProjects(filter?: ProjectFilter) {
   return useQuery({
-    queryKey: ['projects', filter],
+    queryKey: [QUERY_KEYS.PROJECTS, filter],
     queryFn: filter ? () => getProjects(filter) : skipToken,
     placeholderData: keepPreviousData,
   });
@@ -60,7 +64,7 @@ export function useDeleteProject() {
   return useMutation<ApiResponse, ServerError, string>({
     mutationFn: (id: string) => deleteProject(id),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['projects'] }).then();
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.PROJECTS] }).then();
     },
   });
 }

@@ -223,11 +223,8 @@ export function UserStatsDisplay({ stats }: UserStatsDisplayProps) {
           </CardHeader>
           <CardContent className="pt-0">
             <div className="space-y-2 sm:space-y-3 max-h-64 sm:max-h-96 overflow-y-auto">
-              {stats.topFiles.slice(0, 8).map((file, index) => (
-                <div
-                  key={`${file.filename}-${index}`}
-                  className="space-y-2 p-2 sm:p-3 rounded-md bg-muted/30"
-                >
+              {stats.topFiles.slice(0, 8).map(file => (
+                <div key={file.filename} className="space-y-2 p-2 sm:p-3 rounded-md bg-muted/30">
                   <div className="flex items-start justify-between">
                     <Typography
                       variant="small"
